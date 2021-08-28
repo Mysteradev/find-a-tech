@@ -7,5 +7,53 @@ datasource db {
 }
 
 generator client {
-  provider = "prisma-client-js"
+  provider      = "prisma-client-js"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  password  String
+  role      Role     @default(USER)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Entreprise {
+  id              String      @id @default(cuid())
+  name            String      @unique
+  location        String
+  numberEmployees String
+  description     String      @db.Text
+  usedLanguage    Languages[] @relation(references: [id])
+  offers Offer[]
+}
+
+model Offer {
+  id           String      @id @default(cuid())
+  title        String
+  slug String
+  description  String      @db.Text
+  salary       String
+  contractType String
+  location     String
+  createdAt    DateTime    @default(now())
+  modifiedAt   DateTime    @updatedAt
+  usedLanguage Languages[] @relation(references: [id])
+  entreprise Entreprise?  @relation(fields: [entrepriseId], references: [id])
+  entrepriseId String?
+
+  @@map(name: "Offers")
+}
+
+model Languages {
+  id          Int          @id @default(autoincrement())
+  name        String
+  entreprises Entreprise[] @relation(references: [id])
+  jobOffers   Offer[]      @relation(references: [id])
+}
+
+enum Role {
+  USER
+  ADMIN
 }

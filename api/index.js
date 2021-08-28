@@ -1,12 +1,12 @@
 import express from 'express'
+import routes from './routes/index'
 
 const app = express()
 
 app.use(express.json())
 
-/**
- * logic for our api will go here
- */
+app.use('/', routes)
+
 export default {
   path: '/api',
   handler: app,
