@@ -8,23 +8,28 @@ const router = Router()
 
 /**
  * Create a new Job Seeker
- * Path : /api/user
+ * Path : /api/user/jobseeker
  */
-router.post('/', async (req, res) => {
-  const { email, password, firstName, lastName, status, age, adress } = req.body
+router.post('/jobseeker', async (req, res) => {
+  const { email, password, firstName, lastName, age, adress } = req.body
 
-  const result = await prisma.user.create({
+  //TODO add validation
+  const user = await prisma.user.create({
     data: {
       email,
       password,
-      firstName,
-      lastName,
-      status,
-      age,
-      adress,
+      jobSeeker: {
+        create: {
+          firstName,
+          lastName,
+          age,
+          adress,
+        },
+      },
     },
   })
-  res.json(result)
+
+  res.json(user)
 })
 
 export default router

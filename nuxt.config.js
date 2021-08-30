@@ -16,6 +16,11 @@ export default {
 
   serverMiddleware: ['~/api/index.js'],
 
+  env: {
+    apiUrl:
+      process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3000/api',
+  },
+
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
