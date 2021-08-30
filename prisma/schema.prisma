@@ -14,7 +14,7 @@ model JobSeeker {
   firstName String
   lastName  String
   age       Int
-  adress    String
+  city      String
   languages Languages[]
 
   @@map("jobseekers")

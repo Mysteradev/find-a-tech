@@ -182,7 +182,7 @@ export default {
         firstName: this.firstName,
         lastName: this.lastName,
         age: 45,
-        adress: this.adress
+        city: this.adress
       })
       .then(res => {
         console.log(res)
