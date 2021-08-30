@@ -19,7 +19,7 @@ model User {
   updatedAt DateTime @updatedAt
 }
 
-model Entreprise {
+model Enterprise {
   id              String      @id @default(cuid())
   name            String      @unique
   location        String
@@ -40,8 +40,8 @@ model Offer {
   createdAt    DateTime    @default(now())
   modifiedAt   DateTime    @updatedAt
   usedLanguage Languages[] @relation(references: [id])
-  entreprise Entreprise?  @relation(fields: [entrepriseId], references: [id])
-  entrepriseId String?
+  enterprise Enterprise?  @relation(fields: [enterpriseId], references: [id])
+  enterpriseId String?
 
   @@map(name: "Offers")
 }
@@ -49,7 +49,7 @@ model Offer {
 model Languages {
   id          Int          @id @default(autoincrement())
   name        String
-  entreprises Entreprise[] @relation(references: [id])
+  enterprises Enterprise[] @relation(references: [id])
   jobOffers   Offer[]      @relation(references: [id])
 }
 

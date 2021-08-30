@@ -6,6 +6,7 @@
           {{ offer.title }}
         </v-card-title>
         <v-card-subtitle>
+          {{ offer.enterprise.name }}
           <v-icon small>mdi-map-marker</v-icon>
           {{ offer.location }} •
           <v-icon small>mdi-currency-eur</v-icon>
