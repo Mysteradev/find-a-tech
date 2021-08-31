@@ -56,7 +56,7 @@
             <template v-slot:activator="{ on, attrs }">
               <v-text-field
                 v-model="birthdateFormatted"
-                label="Date"
+                label="Date de naissance"
                 v-bind="attrs"
                 @blur="birthdate = parseDate(birthdateFormatted)"
                 v-on="on"
